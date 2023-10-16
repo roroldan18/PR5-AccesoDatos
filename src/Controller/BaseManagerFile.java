@@ -1,48 +1,46 @@
 package Controller;
 
+import Entity.Student;
+
 import java.io.*;
 import java.util.List;
 
 public abstract class BaseManagerFile<T> {
     protected String fileName;
-    protected List<T> dataList;
+    protected List<Student> dataList;
     protected FileManager fileManager;
 
-    public BaseManagerFile(String fileName, List<T> dataList) {
+    public BaseManagerFile(String fileName, List<Student> dataList) {
         this.fileName = fileName;
         this.dataList = dataList;
         this.fileManager = new FileManager(fileName);
     }
 
-    public void loadDataFromFile() {
-        String fileContent = fileManager.readFile();
-        // Parse file content and populate the dataList (e.g., convert from text to objects)
-        // Example: dataList = parseFileContent(fileContent);
+
+
+    public void saveDataToFile(List<Student> studentsList) {
+        fileManager.writeFile(studentsList);
     }
 
-    public void saveDataToFile() {
-        String fileContent = convertDataToString(); // Convert the dataList to a string representation
-        fileManager.writeFile(fileContent);
-    }
 
-    public void addData(T data) {
+    public void addData(Student data) {
         dataList.add(data);
-        saveDataToFile();
+        saveDataToFile(dataList);
     }
 
-    public void removeData(T data) {
+    public void removeData(Student data) {
         dataList.remove(data);
-        saveDataToFile();
+        saveDataToFile(dataList);
     }
 
     public void removeDataByIndex(int index) {
         if (index >= 0 && index < dataList.size()) {
             dataList.remove(index);
-            saveDataToFile();
+            saveDataToFile(dataList);
         }
     }
 
-    public List<T> getDataList() {
+    public List<Student> getDataList() {
         return dataList;
     }
 

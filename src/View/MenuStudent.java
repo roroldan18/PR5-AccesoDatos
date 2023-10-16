@@ -86,8 +86,11 @@ public class MenuStudent {
     }
 
     public void viewAllStudents() throws IOException {
-        studentManager.getStudentsList();
-    }
+        List<Student> students = studentManager.getStudentsList();
+        for (Student student : students) {
+            System.out.println(student);
+            System.out.println("-----------");
+        }    }
 
     public void searchStudentsBySubjectAndGrade() {
         System.out.println("Please enter the subject to search:");

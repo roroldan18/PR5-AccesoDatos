@@ -41,8 +41,9 @@ public class FileManager {
         return studentsList;
     }
 
+
     public void writeFile(List<Student> students) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
             for (Student student : students) {
                 bw.write(student.getName() + "," + student.getLastName() + "," +
                         student.getAsignatura() + "," + student.getNote() + "," +
@@ -54,6 +55,7 @@ public class FileManager {
             e.printStackTrace();
         }
     }
+
 
     public void removeLine(String lineToRemove) {
         List<String> lines = new ArrayList<>();
